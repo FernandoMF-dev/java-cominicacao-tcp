@@ -22,6 +22,7 @@ public enum ProdutoEnum implements Serializable {
         this.nomeProduto = nomeProduto;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public Integer getCodigoProduto() {
         return codigoProduto;
     }
@@ -29,5 +30,5 @@ public enum ProdutoEnum implements Serializable {
     public String getNomeProduto() {
         return nomeProduto;
     }
-
+    // </editor-fold>
 }

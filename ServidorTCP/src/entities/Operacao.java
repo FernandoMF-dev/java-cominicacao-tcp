@@ -15,9 +15,7 @@ public class Operacao implements Serializable {
 
     private String mensagem;
 
-    public Operacao() {
-    }
-
+    // <editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public OperacaoEnum getOperacao() {
         return operacao;
     }
@@ -49,5 +47,5 @@ public class Operacao implements Serializable {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
-
+    // </editor-fold>
 }

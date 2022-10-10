@@ -17,6 +17,7 @@ public enum OperacaoEnum implements Serializable{
         this.nomeOperacao = nomeOperacao;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public Integer getCodigoOperacao() {
         return codigoOperacao;
     }
@@ -24,5 +25,5 @@ public enum OperacaoEnum implements Serializable{
     public String getNomeOperacao() {
         return nomeOperacao;
     }
-
+    // </editor-fold>
 }

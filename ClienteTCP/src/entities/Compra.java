@@ -10,9 +10,7 @@ public class Compra implements Serializable {
 
     private ArrayList<ProdutoEnum> produtos = new ArrayList<>();
 
-    public Compra() {
-    }
-
+    // <editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public Long getId() {
         return identificador;
     }
@@ -28,5 +26,5 @@ public class Compra implements Serializable {
     public void setProdutos(ArrayList<ProdutoEnum> produtos) {
         this.produtos = produtos;
     }
-
+    // </editor-fold>
 }
