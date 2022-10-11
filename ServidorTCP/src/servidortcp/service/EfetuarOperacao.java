@@ -11,57 +11,57 @@ import java.util.stream.Collectors;
 
 public class EfetuarOperacao {
 
-    private Operacao operacao;
-    private AlgoritimoApriori algoritimoApriori = new AlgoritimoApriori();
+	private Operacao operacao;
+	private AlgoritimoApriori algoritimoApriori = new AlgoritimoApriori();
 
-    public EfetuarOperacao(Operacao operacao) {
-        this.operacao = operacao;
-    }
+	public EfetuarOperacao(Operacao operacao) {
+		this.operacao = operacao;
+	}
 
-    private String formatarRelatorio(List<CandidatoApriori> relatorio) {
-        return relatorio.stream()
-                .map(value -> String.format("%s >>> %s", value.getProdutos().get(0), value.getProdutos().get(1)))
-                .collect(Collectors.joining("\n"));
-    }
+	private String formatarRelatorio(List<CandidatoApriori> relatorio) {
+		return relatorio.stream()
+				.map(value -> String.format("%s >>> %s", value.getProdutos().get(0), value.getProdutos().get(1)))
+				.collect(Collectors.joining("\n"));
+	}
 
-    private Operacao salvarCompra() {
-        Operacao novaOperacao = new Operacao();
-        Compra novaCompra = new Compra();
-        novaCompra.setId(Banco.getIncrementoIdentificador());
-        novaCompra.setProdutos(operacao.getNovaCompra());
-        Banco.adicionarCompra(novaCompra);
-        novaOperacao.setMensagem("Sucesso");
-        return novaOperacao;
-    }
+	private Operacao salvarCompra() {
+		Operacao novaOperacao = new Operacao();
+		Compra novaCompra = new Compra();
+		novaCompra.setId(Banco.getIncrementoIdentificador());
+		novaCompra.setProdutos(operacao.getNovaCompra());
+		Banco.adicionarCompra(novaCompra);
+		novaOperacao.setMensagem("Sucesso");
+		return novaOperacao;
+	}
 
-    private Operacao retornarCompras() {
-        Operacao novaOperacao = new Operacao();
-        novaOperacao.setComprasEfetuadas(Banco.getResultadoCompras());
-        novaOperacao.setMensagem("Sucesso");
-        return novaOperacao;
-    }
+	private Operacao retornarCompras() {
+		Operacao novaOperacao = new Operacao();
+		novaOperacao.setComprasEfetuadas(Banco.getResultadoCompras());
+		novaOperacao.setMensagem("Sucesso");
+		return novaOperacao;
+	}
 
-    private Operacao retornarApriori() {
-        Operacao novaOperacao = new Operacao();
-        List<CandidatoApriori> relatorio = algoritimoApriori.obterRelatorio();
-        novaOperacao.setMensagem(formatarRelatorio(relatorio));
-        return novaOperacao;
-    }
+	private Operacao retornarApriori() {
+		Operacao novaOperacao = new Operacao();
+		List<CandidatoApriori> relatorio = algoritimoApriori.obterRelatorio();
+		novaOperacao.setMensagem(formatarRelatorio(relatorio));
+		return novaOperacao;
+	}
 
-    private Operacao verificarOperacao() {
-        if (Objects.equals(operacao.getOperacao().getCodigoOperacao(), OperacaoEnum.SALVAR.getCodigoOperacao())) {
-            return salvarCompra();
-        }
+	private Operacao verificarOperacao() {
+		if (Objects.equals(operacao.getOperacao().getCodigoOperacao(), OperacaoEnum.SALVAR.getCodigoOperacao())) {
+			return salvarCompra();
+		}
 
-        if (Objects.equals(operacao.getOperacao().getCodigoOperacao(), OperacaoEnum.ATUALIZAR.getCodigoOperacao())) {
-            return retornarCompras();
-        }
+		if (Objects.equals(operacao.getOperacao().getCodigoOperacao(), OperacaoEnum.ATUALIZAR.getCodigoOperacao())) {
+			return retornarCompras();
+		}
 
-        return retornarApriori();
-    }
+		return retornarApriori();
+	}
 
-    public Operacao realizarOperacao() {
-        return verificarOperacao();
-    }
+	public Operacao realizarOperacao() {
+		return verificarOperacao();
+	}
 
 }
