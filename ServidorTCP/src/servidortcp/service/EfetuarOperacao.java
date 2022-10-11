@@ -1,17 +1,27 @@
 package servidortcp.service;
 
+import entities.CandidatoApriori;
 import java.util.Objects;
 import servidortcp.data.Banco;
 import entities.Compra;
 import entities.Operacao;
 import enums.OperacaoEnum;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EfetuarOperacao {
 
     private Operacao operacao;
+    private AlgoritimoApriori algoritimoApriori = new AlgoritimoApriori();
 
     public EfetuarOperacao(Operacao operacao) {
         this.operacao = operacao;
+    }
+
+    private String formatarRelatorio(List<CandidatoApriori> relatorio) {
+        return relatorio.stream()
+                .map(value -> String.format("%s >>> %s", value.getProdutos().get(0), value.getProdutos().get(1)))
+                .collect(Collectors.joining("\n"));
     }
 
     private Operacao salvarCompra() {
@@ -33,7 +43,8 @@ public class EfetuarOperacao {
 
     private Operacao retornarApriori() {
         Operacao novaOperacao = new Operacao();
-        // Aqui implementar Algoritmo Apriori
+        List<CandidatoApriori> relatorio = algoritimoApriori.obterRelatorio();
+        novaOperacao.setMensagem(formatarRelatorio(relatorio));
         return novaOperacao;
     }
 

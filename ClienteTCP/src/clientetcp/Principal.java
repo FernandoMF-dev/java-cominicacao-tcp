@@ -1,6 +1,7 @@
 package clientetcp;
 
 import clientetcp.resource.CompraForm;
+import clientetcp.resource.RelatorioDialog;
 import entities.Compra;
 import entities.Operacao;
 import enums.OperacaoEnum;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 public class Principal extends javax.swing.JFrame {
 
     private CompraForm janelaCompra = null;
+    private RelatorioDialog relatorioDialog = null;
 
     private Operacao operacao = null;
 
@@ -22,6 +24,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void iniciarJanelaCompra() {
         this.janelaCompra = new CompraForm(this, true);
+        this.relatorioDialog = new RelatorioDialog(this, true);
     }
 
     private void iniciarOperacao() {
@@ -63,6 +66,11 @@ public class Principal extends javax.swing.JFrame {
     private void preencherOperacaoAtualizar() {
         iniciarOperacao();
         operacao.setOperacao(OperacaoEnum.ATUALIZAR);
+    }
+    
+    private void preencherOperacaoApriori() {
+        iniciarOperacao();
+        operacao.setOperacao(OperacaoEnum.APRIORI);
     }
 
     @SuppressWarnings("unchecked")
@@ -111,6 +119,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         buttonRelatorio.setText("Relatório");
+        buttonRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRelatorioActionPerformed(evt);
+            }
+        });
 
         buttonAtualizar.setText("Atualizar");
         buttonAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +174,12 @@ public class Principal extends javax.swing.JFrame {
         ClienteTCP clienteTCP = new ClienteTCP(operacao);
         preencherTabelaRegistrosCompra(clienteTCP.enviarSolicitacaoServidor());
     }//GEN-LAST:event_buttonAtualizarActionPerformed
+
+    private void buttonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRelatorioActionPerformed
+        preencherOperacaoApriori();
+        ClienteTCP clienteTCP = new ClienteTCP(operacao);
+        relatorioDialog.setVisible(true, clienteTCP.enviarSolicitacaoServidor().getMensagem());
+    }//GEN-LAST:event_buttonRelatorioActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
