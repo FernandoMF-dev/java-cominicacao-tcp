@@ -1,7 +1,7 @@
 # Comunicação TCP e algoritimo Apriori em Java
 Configuração de uma comunicação TCP entre um cliente e um servidor utilizando Java.<br>
 Atividade proposta pelo professor **Vanderson José Idelfonso Silva** no curso de **Bacharelado de Sistemas de Informação**.<br>
-Desenvolvida pelos alunos: **Fernando Martins**, **Leonardo de Souza** e **Mateus Padovan**.
+Desenvolvida pelos alunos: **Carla Tohnes**, **Fernando Martins**, **Leonardo de Souza** e **Mateus Padovan**.
 
 **Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo (IF ES). Campus Colatina**
 
